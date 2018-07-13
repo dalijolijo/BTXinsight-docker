@@ -1,0 +1,25 @@
+{
+  "network": "testnet",
+  "port": 3001,
+  "services": [
+    "bitcoind",
+    "insight-api-btx",
+    "insight-ui-btx",
+    "web"
+  ],
+  "servicesConfig": {
+    "bitcoind": {
+      "spawn": {
+        "datadir": "/home/bitcore/bitcore-livenet/bin/mynode/data",
+        "exec": "/home/bitcore/bitcore-livenet/bin/bitcored"
+      }
+    },
+    "insight-api-bitcore": {
+        "routePrefix": "api"
+    },
+    "insight-ui-bitcore": {
+        "apiPrefix": "api",
+        "routePrefix": ""
+    }
+  }
+}
