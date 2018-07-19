@@ -92,6 +92,38 @@ docker run \
  ${DOCKER_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
 
 #
+# Start in Testnet?
+# 
+printf "\nDo you want to start the BTXinsight in TESTNET?\n"
+printf "Enter [Y]es or [N]o and Hit [ENTER]: "
+read TESTNET
+
+# Restart bitcored to accept the config change (testnet=1)
+if [[ $TESTNET =~ "Y" ]] || [[ $TESTNET =~ "y" ]]; then
+    printf "Restart bitcored to accept the config change."
+
+    # Change config file: Add testnet=1
+    docker exec ${CONTAINER_NAME} bash -c "echo 'testnet=1' >> /home/bitcore/bitcore-livenet/bin/mynode/data/bitcore.conf" 
+
+    # Wait until Daemon bitcored is running
+    function is_running {
+       running=$(docker exec "$1" supervisorctl status | grep "RUNNING")
+       if [ -z "$running" ]; then
+          printf "."
+          true;
+       else
+          printf "\n"
+          false;
+       fi
+    return $?;
+    }
+
+    printf "Please wait until Daemon bitcored is started..."
+    while is_running ${CONTAINER_NAME} ; do true; done
+    docker exec ${CONTAINER_NAME} supervisorctl restart bitcored
+fi
+
+#
 # Show result and give user instructions
 #
 sleep 5
@@ -108,3 +140,7 @@ else
     printf "\nCheck Log Output of ${BTX_COL}BitCore (BTX)${NO_COL} Insight with ${GREEN}'docker logs ${CONTAINER_NAME}'${NO_COL}\n"
     printf "${GREEN}HAVE FUN!${NO_COL}\n\n"
 fi
+
+#DEBUG
+docker exec btx-insight-docker cat /home/bitcore/bitcore-livenet/bin/mynode/data/bitcore.conf
+
