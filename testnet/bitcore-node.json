@@ -10,8 +10,8 @@
   "servicesConfig": {
     "bitcoind": {
       "spawn": {
-        "datadir": "/home/bitcore/bitcore-livenet/bin/mynode/data",
-        "exec": "/home/bitcore/bitcore-livenet/bin/bitcored"
+        "datadir": "/home/bitcore/bitcore-testnet/bin/mynode/data",
+        "exec": "/home/bitcore/bitcore-testnet/bin/bitcored"
       }
     },
     "insight-api-bitcore": {

@@ -13,9 +13,9 @@ SHELL ["/bin/bash", "-c"]
 RUN echo '*** BTX Insight Explorer Docker Solution ***'
 
 # Make ports available to the world outside this container
-# Default Port = 8555
-# RPC Port = 8556
-# Tor Port = 9051
+# Testnet Default Port = 8666
+# Testnet RPC Port = 50332
+# Testnet Tor Port = 9051
 # ZMQ Port = 28332 (Block and Transaction Broadcasting with ZeroMQ)
 # API Port = 3001 (Insight Explorer is avaiable at http://yourip:3001/insight and API at http://yourip:3001/insight/api)
 
@@ -88,11 +88,11 @@ RUN mkdir -p /home/bitcore/src/ && \
 
 # Install bitcore-node-btx
 RUN cd /home/bitcore && \
-    git clone https://github.com/${GIT}/bitcore-node-btx.git bitcore-livenet && \
-    cd /home/bitcore/bitcore-livenet && \
+    git clone https://github.com/${GIT}/bitcore-node-btx.git bitcore-testnet && \
+    cd /home/bitcore/bitcore-testnet && \
     npm install
 
-ENV BTX_NET "/home/bitcore/bitcore-livenet"
+ENV BTX_NET "/home/bitcore/bitcore-testnet"
 
 # Create Bitcore Node
 # Hint: bitcore-node create -d <bitcoin-data-dir> mynode
@@ -130,7 +130,7 @@ RUN cd ${BTX_NET}/bin/mynode/node_modules && \
     cd ${BTX_NET}/bin/mynode/node_modules/bitcore-build-btx && \
     npm install
 
-# Copy bitcored to the correct bitcore-livenet/bin/ directory
+# Copy bitcored to the correct bitcore-testnet/bin/ directory
 RUN cp /home/bitcore/src/bitcored ${BTX_NET}/bin/
 
 # Copy JSON bitcore-node.json
