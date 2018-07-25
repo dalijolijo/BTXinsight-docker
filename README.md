@@ -31,5 +31,5 @@ sudo bash -c "$(curl -fsSL https://github.com/dalijolijo/BTXinsight-docker/raw/m
 ```sh
 docker build -t limxtec/btx-insight-docker .
 docker push limxtec/btx-insight-docker
-docker run --rm --name btx-insight-docker -p 8555:8555 -p 8556:8556 -p 9051:9051 -p 28332:28332 limxtec/btx-insight-docker
+docker run --rm --name btx-insight-docker -p 8555:8555 -p 8556:8556 -p 9051:9051 -p 28332:28332 -p 3001:3001 limxtec/btx-insight-docker
 ```
