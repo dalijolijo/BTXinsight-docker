@@ -98,6 +98,7 @@ ENV BTX_NET "/home/bitcore/bitcore-livenet"
 # Hint: bitcore-node create -d <bitcoin-data-dir> mynode
 RUN cd ${BTX_NET}/bin && \
     chmod 777 bitcore-node && \
+    sync && \
     ./bitcore-node create -d ${BTX_NET}/bin/mynode/data mynode
 
 # Install insight-api-btx

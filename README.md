@@ -21,6 +21,12 @@ Login as root, then only run the following script:
 sudo bash -c "$(curl -fsSL https://github.com/limxtec/BTXinsight-docker/raw/master/btx-insight-docker.sh)"
 ```
 
+## Deployment of Docker Solution (TESTNET)
+Login as root, then only run the following script:
+```sh
+sudo bash -c "$(curl -fsSL https://github.com/dalijolijo/BTXinsight-docker/raw/master/testnet/btx-insight_testnet-docker.sh)"
+```
+
 ## Build/run (only for docker image development)
 ```sh
 docker build -t limxtec/btx-insight-docker .

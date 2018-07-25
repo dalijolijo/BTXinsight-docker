@@ -32,7 +32,7 @@ RUN apt-get update && \
 # Running updates and installing required packages
 # New version libzmq5-dev needed?
 RUN apt-get update && \
-    apt-get dist-upgrade -y && \
+    apt-get upgrade -y && \
     apt-get install -y build-essential \
                             git \
                             libzmq3-dev \
@@ -98,6 +98,7 @@ ENV BTX_NET "/home/bitcore/bitcore-testnet"
 # Hint: bitcore-node create -d <bitcoin-data-dir> mynode
 RUN cd ${BTX_NET}/bin && \
     chmod 777 bitcore-node && \
+    sync && \
     ./bitcore-node create -d ${BTX_NET}/bin/mynode/data mynode --testnet
 
 # Install insight-api-btx
