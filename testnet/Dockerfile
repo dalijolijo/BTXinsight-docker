@@ -5,7 +5,7 @@ FROM limxtec/crypto-lib-ubuntu:16.04
 
 LABEL maintainer="The Bitcore BTX Core Developers"
 
-ENV GIT dalijolijo
+ENV GIT LIMXTEC
 USER root
 WORKDIR /home
 SHELL ["/bin/bash", "-c"]
