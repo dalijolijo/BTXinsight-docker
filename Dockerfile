@@ -119,17 +119,42 @@ RUN cd ${BTX_NET}/bin/mynode/node_modules && \
     cd ${BTX_NET}/bin/mynode/node_modules/bitcore-message-btx && \
     npm install save
 
+# Remove duplicate node_module 'bitcore-lib' to prevent startup errors such as:
+#   "More than one instance of bitcore-lib found. Please make sure to require bitcore-lib and check that submodules do
+#   not also include their own bitcore-lib dependency."
+RUN rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-node-btx/node_modules/bitcore-lib-btx && \
+    rm -Rf ${BTX_NET}/bin/mynode/node_modules/insight-api-btx/node_modules/bitcore-lib-btx && \
+    rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-lib-btx
+
 # Install bitcore-lib-btx (not needed: part of another module)
-#RUN cd ${BTX_NET}/bin/mynode/node_modules && \
-#    git clone https://github.com/${GIT}/bitcore-lib-btx.git && \
-#    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-lib-btx && \
-#    npm install
+RUN cd ${BTX_NET}/bin/mynode/node_modules && \
+    git clone https://github.com/${GIT}/bitcore-lib-btx.git && \
+    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-lib-btx && \
+    npm install
 
 # Install bitcore-build-btx.git
 RUN cd ${BTX_NET}/bin/mynode/node_modules && \
     git clone https://github.com/${GIT}/bitcore-build-btx.git && \
     cd ${BTX_NET}/bin/mynode/node_modules/bitcore-build-btx && \
     npm install
+
+# Install bitcore-wallet-service
+# See: https://github.com/dalijolijo/bitcore-wallet-service-joli/blob/master/installation.md
+# Reference: https://github.com/m00re/bitcore-docker
+# This will launch the BWS service (with default settings) at http://localhost:3232/bws/api.
+# BWS needs mongoDB. You can configure the connection at config.js
+#RUN cd ${BTX_NET}/bin/mynode/node_modules && \
+#    git clone https://github.com/${GIT}/bitcore-wallet-service-btx.git && \
+#    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-wallet-service-btx && \
+#    npm install
+# Configuration needed before start
+#RUN npm start
+#RUN rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-wallet-service/node_modules/bitcore-lib-btx
+
+# Cleanup
+RUN apt-get -y remove --purge build-essential && \
+    apt-get -y autoremove && \
+    apt-get -y clean
 
 # Copy bitcored to the correct bitcore-livenet/bin/ directory
 RUN cp /home/bitcore/src/bitcored ${BTX_NET}/bin/
