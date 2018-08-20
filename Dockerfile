@@ -125,6 +125,8 @@ RUN cd ${BTX_NET}/bin/mynode/node_modules && \
 RUN rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-node-btx/node_modules/bitcore-lib-btx && \
     rm -Rf ${BTX_NET}/bin/mynode/node_modules/insight-api-btx/node_modules/bitcore-lib-btx && \
     rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-lib-btx
+#    rm -Rf ${BTX_NET}/node_modules/bitcore-lib-btx
+#    rm -Rf ${BTX_NET}/node_modules/bitcore-lib
 
 # Install bitcore-lib-btx (not needed: part of another module)
 RUN cd ${BTX_NET}/bin/mynode/node_modules && \
@@ -137,6 +139,13 @@ RUN cd ${BTX_NET}/bin/mynode/node_modules && \
     git clone https://github.com/${GIT}/bitcore-build-btx.git && \
     cd ${BTX_NET}/bin/mynode/node_modules/bitcore-build-btx && \
     npm install
+
+# Install bitcore-specialops-btx.git
+# README: cd ~/mynode AND npm install --save bitcore-specialops-btx
+RUN cd ${BTX_NET}/bin/mynode/node_modules && \
+    git clone -b btx-support https://github.com/dalijolijo/bitcore-specialops-btx.git && \
+    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-specialops-btx && \
+    npm install save
 
 # Install bitcore-wallet-service
 # See: https://github.com/dalijolijo/bitcore-wallet-service-joli/blob/master/installation.md

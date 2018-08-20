@@ -5,7 +5,8 @@
     "bitcoind",
     "insight-api-btx",
     "insight-ui-btx",
-    "web"
+    "web",
+    "bitcore-specialops-btx"
   ],
   "servicesConfig": {
     "bitcoind": {
@@ -20,6 +21,9 @@
     "insight-ui-bitcore": {
         "apiPrefix": "api",
         "routePrefix": ""
+    },
+    "bitcore-specialops-btx": {
+        "routePrefix": "opcodes"
     }
   }
 }
