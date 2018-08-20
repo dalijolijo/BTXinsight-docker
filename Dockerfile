@@ -5,7 +5,7 @@ FROM limxtec/crypto-lib-ubuntu:16.04
 
 LABEL maintainer="The Bitcore BTX Core Developers"
 
-ENV GIT LIMXTEC
+ENV GIT dalijolijo
 USER root
 WORKDIR /home
 SHELL ["/bin/bash", "-c"]
@@ -125,8 +125,6 @@ RUN cd ${BTX_NET}/bin/mynode/node_modules && \
 RUN rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-node-btx/node_modules/bitcore-lib-btx && \
     rm -Rf ${BTX_NET}/bin/mynode/node_modules/insight-api-btx/node_modules/bitcore-lib-btx && \
     rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-lib-btx
-#    rm -Rf ${BTX_NET}/node_modules/bitcore-lib-btx
-#    rm -Rf ${BTX_NET}/node_modules/bitcore-lib
 
 # Install bitcore-lib-btx (not needed: part of another module)
 RUN cd ${BTX_NET}/bin/mynode/node_modules && \
