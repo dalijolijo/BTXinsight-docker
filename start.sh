@@ -3,7 +3,7 @@ set -u
 
 # Downloading bootstrap file
 cd /home/bitcore/bitcore-livenet/bin/mynode/data
-if [ ! -d /home/bitcore/bitcore-livenet/bin/mynode/data/data/blocks ] && [ "$(curl -Is https://${WEB}/${BOOTSTRAP} | head -n 1 | tr -d '\r\n')" = "HTTP/1.1 200 OK" ] ; then \
+if [ ! -d /home/bitcore/bitcore-livenet/bin/mynode/data/blocks ] && [ "$(curl -Is https://${WEB}/${BOOTSTRAP} | head -n 1 | tr -d '\r\n')" = "HTTP/1.1 200 OK" ] ; then \
         wget https://${WEB}/${BOOTSTRAP}; \
         tar -xvzf ${BOOTSTRAP}; \
         rm ${BOOTSTRAP}; \
