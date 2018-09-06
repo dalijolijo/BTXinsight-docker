@@ -86,9 +86,9 @@ RUN mkdir -p /home/bitcore/src/ && \
     cd /home/bitcore && \
     rm -rf BitCore
 
-# Install bitcore-node-btx
+# Install btxcore
 RUN cd /home/bitcore && \
-    git clone https://github.com/${GIT}/bitcore-node-btx.git bitcore-livenet && \
+    git clone https://github.com/${GIT}/btxcore.git bitcore-livenet && \
     cd /home/bitcore/bitcore-livenet && \
     npm install
 
@@ -144,19 +144,6 @@ RUN cd ${BTX_NET}/bin/mynode/node_modules && \
     git clone -b btx-support https://github.com/dalijolijo/bitcore-specialops-btx.git && \
     cd ${BTX_NET}/bin/mynode/node_modules/bitcore-specialops-btx && \
     npm install save
-
-# Install bitcore-wallet-service
-# See: https://github.com/dalijolijo/bitcore-wallet-service-joli/blob/master/installation.md
-# Reference: https://github.com/m00re/bitcore-docker
-# This will launch the BWS service (with default settings) at http://localhost:3232/bws/api.
-# BWS needs mongoDB. You can configure the connection at config.js
-#RUN cd ${BTX_NET}/bin/mynode/node_modules && \
-#    git clone https://github.com/${GIT}/bitcore-wallet-service-btx.git && \
-#    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-wallet-service-btx && \
-#    npm install
-# Configuration needed before start
-#RUN npm start
-#RUN rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-wallet-service/node_modules/bitcore-lib-btx
 
 # Cleanup
 RUN apt-get -y remove --purge build-essential && \
