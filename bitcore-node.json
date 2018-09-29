@@ -14,10 +14,10 @@
         "exec": "/home/bitcore/bitcore-livenet/bin/bitcored"
       }
     },
-    "insight-api-bitcore": {
+    "insight-api-btx": {
         "routePrefix": "api"
     },
-    "insight-ui-bitcore": {
+    "insight-ui-btx": {
         "apiPrefix": "api",
         "routePrefix": ""
     }
