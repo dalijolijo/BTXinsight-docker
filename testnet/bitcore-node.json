@@ -19,7 +19,7 @@
     },
     "insight-ui-btx": {
         "apiPrefix": "api",
-        "routePrefix": ""
+        "routePrefix": "btx"
     }
   }
 }
