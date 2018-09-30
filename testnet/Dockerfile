@@ -88,7 +88,7 @@ RUN mkdir -p /home/bitcore/src/ && \
 
 # Install bitcore-node-btx
 RUN cd /home/bitcore && \
-    git clone https://github.com/${GIT}/bitcore-node-btx.git bitcore-testnet && \
+    git clone -b testnet https://github.com/${GIT}/bitcore-node-btx.git bitcore-testnet && \
     cd /home/bitcore/bitcore-testnet && \
     npm install
 
