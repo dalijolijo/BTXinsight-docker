@@ -8,7 +8,7 @@
 #
 GIT_REPO="dalijolijo"
 GIT_PROJECT="BTXinsight-docker"
-DOCKER_REPO="limxtec"
+DOCKER_REPO="dalijolijo"
 IMAGE_NAME="btx-insight_testnet-docker"
 IMAGE_TAG="16.04"
 CONTAINER_NAME="btx-insight_testnet-docker"
