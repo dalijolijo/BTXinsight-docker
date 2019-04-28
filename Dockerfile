@@ -5,7 +5,7 @@ FROM limxtec/crypto-lib-ubuntu:16.04
 
 LABEL maintainer="The Bitcore BTX Core Developers"
 
-ENV GIT LIMXTEC
+ENV GIT dalijolijo
 USER root
 WORKDIR /home
 SHELL ["/bin/bash", "-c"]
@@ -45,46 +45,49 @@ RUN apt-get update && \
 RUN npm i npm@latest -g
 
 # Installing required packages for compiling
-RUN apt-get install -y  apt-utils \
-                        autoconf \
-                        automake \
-                        autotools-dev \
-                        build-essential \
-                        libboost-all-dev \
-                        libevent-dev \
-                        libminiupnpc-dev \
-                        libssl-dev \
-                        libtool \
-                        pkg-config \
-                        software-properties-common
-RUN sudo add-apt-repository ppa:bitcoin/bitcoin
-RUN sudo apt-get update && \
-    sudo apt-get -y upgrade
-RUN apt-get install -y libdb4.8-dev \
-                       libdb4.8++-dev
+#RUN apt-get install -y  apt-utils \
+#                        autoconf \
+#                        automake \
+#                        autotools-dev \
+#                        build-essential \
+#                        libboost-all-dev \
+#                        libevent-dev \
+#                        libminiupnpc-dev \
+#                        libssl-dev \
+#                        libtool \
+#                        pkg-config \
+#                        software-properties-common
+#RUN sudo add-apt-repository ppa:bitcoin/bitcoin
+#RUN sudo apt-get update && \
+#    sudo apt-get -y upgrade
+#RUN apt-get install -y libdb4.8-dev \
+#                       libdb4.8++-dev
 
 # Copy bitcored to bin/mynode
-#RUN mkdir -p /home/bitcore/src/ && \
-#    cd /home/bitcore/src/ && \
-#    wget https://github.com/LIMXTEC/BitCore/releases/download/0.15.1.0/linux.Ubuntu.16.04.LTS-static-libstdc.tar.gz && \
-#    tar xzf *.tar.gz && \
-#    strip bitcored && \
-#    rm *.tar.gz
+RUN mkdir -p /home/bitcore/src/ && \
+    cd /home/bitcore/src/ && \
+    #wget https://github.com/LIMXTEC/BitCore/releases/download/0.15.1.0/linux.Ubuntu.16.04.LTS-static-libstdc.tar.gz && \
+    wget https://github.com/dalijolijo/BitCore/releases/download/0.15.2.1/bitcore-0.15.2.1-x86_64-linux-gnu_no-wallet.tar.gz -O /tmp/prebuilt.tar.gz && \
+    tar xzf /tmp/prebuilt.tar.gz -C /tmp/ && \
+    chmod a+x /tmp/bin/bitcored && \
+    mv /tmp/bin/bitcored /home/bitcore/src/ && \
+    strip /home/bitcore/src/bitcored && \
+    rm -rf /tmp/*
 
 # Cloning and Compiling BitCore Wallet
-RUN mkdir -p /home/bitcore/src/ && \
-    cd /home/bitcore && \
-    git clone https://github.com/LIMXTEC/BitCore.git && \
-    cd BitCore && \
-    ./autogen.sh && \
-    ./configure --disable-dependency-tracking --enable-tests=no --without-gui --disable-hardening && \
-    make && \
-    cd /home/bitcore/BitCore/src && \
-    strip bitcored && \
-    chmod 775 bitcored && \
-    cp bitcored /home/bitcore/src/ && \
-    cd /home/bitcore && \
-    rm -rf BitCore
+#RUN mkdir -p /home/bitcore/src/ && \
+#    cd /home/bitcore && \
+#    git clone https://github.com/LIMXTEC/BitCore.git && \
+#    cd BitCore && \
+#    ./autogen.sh && \
+#    ./configure --disable-dependency-tracking --enable-tests=no --without-gui --disable-hardening && \
+#    make && \
+#    cd /home/bitcore/BitCore/src && \
+#    strip bitcored && \
+#    chmod 775 bitcored && \
+#    cp bitcored /home/bitcore/src/ && \
+#    cd /home/bitcore && \
+#    rm -rf BitCore
 
 # Install bitcore-node-btx
 RUN cd /home/bitcore && \
@@ -103,7 +106,7 @@ RUN cd ${BTX_NET}/bin && \
 
 # Install insight-api-btx
 RUN cd ${BTX_NET}/bin/mynode/node_modules && \
-    git clone https://github.com/${GIT}/insight-api-btx.git && \
+    git clone -b testnet https://github.com/${GIT}/insight-api-btx.git && \
     cd ${BTX_NET}/bin/mynode/node_modules/insight-api-btx && \
     npm install
 
