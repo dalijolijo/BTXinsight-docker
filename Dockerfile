@@ -114,29 +114,29 @@ RUN cd ${BTX_NET}/bin/mynode/node_modules && \
     npm install
 
 # Install bitcore-message-btx
-RUN cd ${BTX_NET}/bin/mynode/node_modules && \
-    git clone https://github.com/${GIT}/bitcore-message-btx.git && \
-    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-message-btx && \
-    npm install save
+#RUN cd ${BTX_NET}/bin/mynode/node_modules && \
+#    git clone https://github.com/${GIT}/bitcore-message-btx.git && \
+#    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-message-btx && \
+#    npm install save
 
 # Remove duplicate node_module 'bitcore-lib' to prevent startup errors such as:
 #   "More than one instance of bitcore-lib found. Please make sure to require bitcore-lib and check that submodules do
 #   not also include their own bitcore-lib dependency."
-RUN rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-node-btx/node_modules/bitcore-lib-btx && \
-    rm -Rf ${BTX_NET}/bin/mynode/node_modules/insight-api-btx/node_modules/bitcore-lib-btx && \
-    rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-lib-btx
+#RUN rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-node-btx/node_modules/bitcore-lib-btx && \
+#    rm -Rf ${BTX_NET}/bin/mynode/node_modules/insight-api-btx/node_modules/bitcore-lib-btx && \
+#    rm -Rf ${BTX_NET}/bin/mynode/node_modules/bitcore-lib-btx
 
 # Install bitcore-lib-btx (not needed: part of another module)
-RUN cd ${BTX_NET}/bin/mynode/node_modules && \
-    git clone https://github.com/${GIT}/bitcore-lib-btx.git && \
-    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-lib-btx && \
-    npm install
+#RUN cd ${BTX_NET}/bin/mynode/node_modules && \
+#    git clone https://github.com/${GIT}/bitcore-lib-btx.git && \
+#    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-lib-btx && \
+#    npm install
 
 # Install bitcore-build-btx.git
-RUN cd ${BTX_NET}/bin/mynode/node_modules && \
-    git clone https://github.com/${GIT}/bitcore-build-btx.git && \
-    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-build-btx && \
-    npm install
+#RUN cd ${BTX_NET}/bin/mynode/node_modules && \
+#    git clone https://github.com/${GIT}/bitcore-build-btx.git && \
+#    cd ${BTX_NET}/bin/mynode/node_modules/bitcore-build-btx && \
+#    npm install
 
 # Install bitcore-wallet-service
 # See: https://github.com/dalijolijo/bitcore-wallet-service-joli/blob/master/installation.md
