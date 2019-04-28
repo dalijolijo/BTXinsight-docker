@@ -18,7 +18,7 @@
 ## Deployment of Docker Solution
 Login as root, then only run the following script:
 ```sh
-sudo bash -c "$(curl -fsSL https://github.com/limxtec/BTXinsight-docker/raw/master/btx-insight-docker.sh)"
+sudo bash -c "$(curl -fsSL https://github.com/dalijolijo/BTXinsight-docker/raw/master/btx-insight-docker.sh)"
 ```
 
 ## Deployment of Docker Solution (TESTNET)
